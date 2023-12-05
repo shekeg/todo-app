@@ -6,7 +6,12 @@ module.exports = {
   },
   extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
