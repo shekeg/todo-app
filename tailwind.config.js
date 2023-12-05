@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,vue}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        urbanist: ['Urbanist', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };
