@@ -20,9 +20,6 @@ export const useTodoFilters = (todos: Ref<TodoDataItem[]>) => {
   const statusQuery = useRouteQuery<StatusOptions>(ROUTE_QUERY_KEYS.status, STATUS_OPTIONS.all);
 
   const filteredTodos = computed(() => {
-    if (todos.value === null) {
-      return [];
-    }
     const filteredByName = todos.value.filter((t) => t.todo.includes(nameQuery.value || ''));
 
     switch (statusQuery.value) {
