@@ -8,7 +8,7 @@ using Vue 3.
 1. Install dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 2. Create a `.env.local` file in the root directory. Copy the contents of `.env.example` into `.env.local`.
