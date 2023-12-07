@@ -41,7 +41,8 @@ export const useTodoData = () => {
       const lastExisting = data.value.todos[data.value.todos.length - 1];
       data.value.todos.push({
         ...item,
-        id: lastExisting.id + 1,
+        // Since backend always returns 151 as the id, we need to generate a new one manually
+        id: lastExisting ? lastExisting.id + 1 : 1,
       });
     });
   };
