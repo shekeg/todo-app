@@ -1,5 +1,5 @@
 import { useRouteQuery } from '@vueuse/router';
-import { computed, Ref } from 'vue';
+import { computed, type Ref, type ComputedRef } from 'vue';
 import { type TodoDataItem } from '@/composables/useTodoData.ts';
 
 const ROUTE_QUERY_KEYS = {
@@ -15,7 +15,7 @@ export const STATUS_OPTIONS = {
 
 type StatusOptions = (typeof STATUS_OPTIONS)[keyof typeof STATUS_OPTIONS];
 
-export const useTodoFilters = (todos: Ref<TodoDataItem[]>) => {
+export const useTodoFilters = (todos: Ref<TodoDataItem[]> | ComputedRef<TodoDataItem[]>) => {
   const nameQuery = useRouteQuery<string>(ROUTE_QUERY_KEYS.name, '');
   const statusQuery = useRouteQuery<StatusOptions>(ROUTE_QUERY_KEYS.status, STATUS_OPTIONS.all);
 
