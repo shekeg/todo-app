@@ -12,6 +12,11 @@ const routes = [
     name: 'TodoUpdatePage',
     component: () => import('@/pages/TodoUpdatePage.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: () => import('@/pages/NotFoundPage.vue'),
+  },
 ];
 export const router = createRouter({
   history: createWebHistory(),
