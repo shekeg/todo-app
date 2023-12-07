@@ -1,10 +1,107 @@
-# Vue 3 + TypeScript + Vite
+# Todo App
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Fully functional CRUD (Create, Read, Update, Delete) Todo application
+using Vue 3.
+
+## Project setup
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Create a `.env.local` file in the root directory. Copy the contents of `.env.example` into `.env.local`.
+
+3. Build the app and run the server
+
+   - [Development](#run-development-server)
+   - [Production](#run-production-preview)
+
+4. Open the app in your browser using the URL provided by the server.
+
+## Scripts
+
+### Run development server
+
+```bash
+npm run dev
+```
+
+### Run production preview
+
+```bash
+npm run build
+```
+
+```bash
+npm run preview
+```
+
+### Run unit tests
+
+```bash
+npm run test
+```
+
+```bash
+npm run test:coverage
+```
+
+### Lints and formatting
+
+```bash
+npm run lint
+```
+
+```bash
+npm run format:check
+```
+
+```bash
+npm run format:fix
+```
 
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+### VS Code `settings.json`
+
+```json
+{
+  //...
+  "editor.formatOnSave": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+  //...
+}
+```
 
 ## Type Support For `.vue` Imports in TS
 
