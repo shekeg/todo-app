@@ -6,12 +6,16 @@ import TodoUpdatePage from '@/pages/TodoUpdatePage.vue';
 
 const mocks = vi.hoisted(() => ({
   router: { back: vi.fn(), replace: vi.fn() },
+  $toast: { success: vi.fn() },
 }));
 
 vi.mock('@/composables/useTodoData.ts');
 vi.mock('vue-router', () => ({
   useRouter: () => mocks.router,
   useRoute: () => ({ params: { id: 1 } }),
+}));
+vi.mock('@/composables/useToastNotifications.ts', () => ({
+  useToastNotifications: () => mocks.$toast,
 }));
 
 describe('TodoCreatePage', () => {
@@ -41,6 +45,7 @@ describe('TodoCreatePage', () => {
       todo: 'Something else',
     });
     expect(mocks.router.back).toHaveBeenCalled();
+    expect(mocks.$toast.success).toHaveBeenCalledWith('Updated successfully');
   });
 
   it('should disable the update button when todo is empty', async () => {

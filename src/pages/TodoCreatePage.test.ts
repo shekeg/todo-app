@@ -6,11 +6,15 @@ import TodoCreatePage from '@/pages/TodoCreatePage.vue';
 
 const mocks = vi.hoisted(() => ({
   router: { back: vi.fn() },
+  $toast: { success: vi.fn() },
 }));
 
-vi.mock('@/composables/useTodoData.ts');
 vi.mock('vue-router', () => ({
   useRouter: () => mocks.router,
+}));
+vi.mock('@/composables/useTodoData.ts');
+vi.mock('@/composables/useToastNotifications.ts', () => ({
+  useToastNotifications: () => mocks.$toast,
 }));
 
 describe('TodoCreatePage', () => {
@@ -35,6 +39,7 @@ describe('TodoCreatePage', () => {
       todo: 'Buy groceries',
     });
     expect(mocks.router.back).toHaveBeenCalled();
+    expect(mocks.$toast.success).toHaveBeenCalledWith('Created successfully');
   });
 
   it('should disable the create button when todo is empty', async () => {
