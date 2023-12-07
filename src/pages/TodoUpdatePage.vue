@@ -43,7 +43,7 @@ const handleCancelClick = () => {
 </script>
 
 <template>
-  <h1 class="text-xl font-bold">Update task #{{ $route.params.id }}</h1>
+  <h1 class="text-xl font-bold">Update task #{{ targetId }}</h1>
   <form @submit.prevent="handleSubmit">
     <BaseCheckbox v-model="isCompleted" class="mt-7" label="Completed" />
     <BaseTextarea
@@ -57,6 +57,7 @@ const handleCancelClick = () => {
         class="ml-auto flex-1 md:flex-none"
         intent="primary"
         :disabled="todo.length === 0"
+        type="submit"
       >
         Update
       </BaseButton>
@@ -64,6 +65,7 @@ const handleCancelClick = () => {
         type="button"
         class="flex-1 md:flex-none"
         intent="distractive"
+        data-test-id="cancel-button"
         @click="handleCancelClick"
       >
         Cancel
