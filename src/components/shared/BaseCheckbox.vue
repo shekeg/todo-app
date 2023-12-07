@@ -15,7 +15,13 @@ const updateInput = (e: Event) => {
 
 <template>
   <label class="inline-block">
-    <input class="accent-brand-500" type="checkbox" :checked="modelValue" @change="updateInput" />
+    <input
+      class="accent-brand-500"
+      type="checkbox"
+      :checked="modelValue"
+      :aria-label="label"
+      @change="updateInput"
+    />
     <span class="ml-1">{{ label }}</span>
   </label>
 </template>
