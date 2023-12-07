@@ -17,4 +17,9 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   plugins: ['prettier'],
+  globals: {
+    TodoId: 'readonly',
+    UserId: 'readonly',
+    ISOTime: 'readonly',
+  },
 };
