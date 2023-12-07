@@ -1,27 +1,73 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 import BaseCheckbox from '@/components/shared/BaseCheckbox.vue';
 import BaseTextarea from '@/components/shared/BaseTextarea.vue';
 import BaseButton from '@/components/shared/BaseButton.vue';
 
-const done = ref(false);
-const description = ref('');
+import { useTodoData } from '@/composables/useTodoData.ts';
+import { useToastNotifications } from '@/composables/useToastNotifications';
+
+const router = useRouter();
+const route = useRoute();
+const $toast = useToastNotifications();
+
+const todoData = useTodoData();
+
+const targetId = Number(route.params.id);
+const targetItem = todoData.data.value.todos.find((item) => item.id === targetId);
+
+if (targetItem === undefined) {
+  router.replace({ name: 'NotFoundPage' });
+}
+
+const isCompleted = ref(targetItem?.completed ?? false);
+const todo = ref(targetItem?.todo ?? '');
+
+const handleSubmit = () => {
+  const payload = {
+    completed: isCompleted.value,
+    todo: todo.value,
+  };
+
+  todoData.update(targetId, payload).then(() => {
+    $toast.success('Updated successfully');
+    router.back();
+  });
+};
+
+const handleCancelClick = () => {
+  router.back();
+};
 </script>
 
 <template>
   <h1 class="text-xl font-bold">Update task #{{ $route.params.id }}</h1>
-  <BaseCheckbox v-model="done" class="mt-7" label="Completed" />
-  <BaseTextarea
-    v-model="description"
-    class="mt-4 w-full"
-    placeholder="Update a note..."
-    aria-label="Update a note..."
-  />
-  <div class="mt-4 flex gap-4">
-    <BaseButton class="ml-auto flex-1 md:flex-none" intent="primary">Update</BaseButton>
-    <BaseButton class="flex-1 md:flex-none" intent="distractive" @click="() => $router.back()">
-      Cancel
-    </BaseButton>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <BaseCheckbox v-model="isCompleted" class="mt-7" label="Completed" />
+    <BaseTextarea
+      v-model="todo"
+      class="mt-4 w-full"
+      placeholder="Update a note..."
+      aria-label="Update a note..."
+    />
+    <div class="mt-4 flex gap-4">
+      <BaseButton
+        class="ml-auto flex-1 md:flex-none"
+        intent="primary"
+        :disabled="todo.length === 0"
+      >
+        Update
+      </BaseButton>
+      <BaseButton
+        type="button"
+        class="flex-1 md:flex-none"
+        intent="distractive"
+        @click="handleCancelClick"
+      >
+        Cancel
+      </BaseButton>
+    </div>
+  </form>
 </template>
