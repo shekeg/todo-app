@@ -26,6 +26,10 @@ const handleSubmit = () => {
     router.back();
   });
 };
+
+const handleCancel = () => {
+  router.back();
+};
 </script>
 
 <template>
@@ -51,7 +55,8 @@ const handleSubmit = () => {
         class="flex-1 md:flex-none"
         intent="distractive"
         type="button"
-        @click="() => $router.back()"
+        data-test-id="cancel-button"
+        @click="handleCancel"
       >
         Cancel
       </BaseButton>
