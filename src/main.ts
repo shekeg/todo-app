@@ -7,6 +7,9 @@ import './styles/index.css';
 import App from './App.vue';
 
 import { router } from './router';
+import { useToastNotifications } from '@/composables/useToastNotifications.ts';
+
+const $toast = useToastNotifications();
 
 const app = createApp(App);
 
@@ -15,6 +18,9 @@ app.use(ToastPlugin, {
   position: 'top',
 });
 
-app.use(router);
+app.config.errorHandler = (err) => {
+  $toast.error(`Error: ${err}`);
+  throw err;
+};
 
 app.mount('#app');
