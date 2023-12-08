@@ -1,6 +1,7 @@
 @import url(./fonts.css);
 @import url(./tailwind.css);
 @import url(./utils.css);
+@import url(./vue-transitions.css);
 
 body {
   @apply font-urbanist text-base text-purple-1000 md:text-lg;
